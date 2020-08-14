@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BlogpostListComponent } from './blogpost-list/blogpost-list.component';
+import { BlogpostComponent } from './blogpost/blogpost.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: BlogpostListComponent },
+  { path: 'blog-posts/:id', component: BlogpostComponent }, // localhost:4200/blog-posts/123
+  { path: '**', component: ErrorpageComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
