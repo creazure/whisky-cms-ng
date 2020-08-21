@@ -10,6 +10,9 @@
 
 <mat-card-actions>
   <button mat-button (click)="deleteBlogposts(blogposts.selectedOptions.selected)"
-  *ngIf="blogposts.selectedOptions.selected.length > 0"
-  >Delete</button>
+    *ngIf="blogposts.selectedOptions.selected.length > 0"
+    >Delete
+  </button>
 </mat-card-actions>
+
+<app-blogpost-create></app-blogpost-create>

@@ -19,6 +19,11 @@ export class AdminComponent implements OnInit {
     this.blogpostService
       .getBlocposts()
       .subscribe(data => this.refresh(data));
+
+    this.blogpostService.handleBlogpostCreated().subscribe(data => {
+      console.log('AdminComponent received', data);
+      this.refresh(data);
+    });
   }
 
   deleteBlogposts(selectedOption) {
