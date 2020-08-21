@@ -18,10 +18,7 @@ export class AdminComponent implements OnInit {
     // this.blogposts$ = this.blogpostService.getBlocposts();
     this.blogpostService
       .getBlocposts()
-      .subscribe(data => {
-        // console.log(data);
-        this.AllBlogposts = data;
-      });
+      .subscribe(data => this.refresh(data));
   }
 
   deleteBlogposts(selectedOption) {
@@ -32,11 +29,22 @@ export class AdminComponent implements OnInit {
     if (ids.length === 1) {
       this.blogpostService
         .DeleteSingleBlogpost(ids[0])
-        .subscribe(data => console.log(data), err => console.error(err));
+        .subscribe(data => this.refresh(data), err => this.handleError(err));
     } else {
       return this.blogpostService
         .deleteBlogposts(ids)
-        .subscribe(data => console.log(data), err => console.error(err));
+        .subscribe(data => this.refresh(data), err => this.handleError(err));
     }
+  }
+
+  refresh(data) {
+    console.log('data', data);
+    this.blogpostService.getBlocposts().subscribe(data => {
+      this.AllBlogposts = data;
+    });
+  }
+
+  handleError(error) {
+    console.log(error);
   }
 }
