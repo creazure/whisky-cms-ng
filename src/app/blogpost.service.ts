@@ -16,6 +16,10 @@ export class BlogpostService {
     return this.httpClient.post<Blogpost>(this.baseUrl, blogpost);
   }
 
+  uploadImage(formData: FormData) {
+    return this.httpClient.post<any>(`${this.baseUrl}/images`, formData);
+  }
+
   dispachBlogpostCreated(id: string) {
     this.blogpostCreated.next(id);
   }
